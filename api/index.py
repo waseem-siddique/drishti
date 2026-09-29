@@ -25,7 +25,12 @@ def _init():
         if _state["ready"]:
             return
         try:
-            import app as _app
+            import importlib.util
+            spec = importlib.util.spec_from_file_location(
+                "drishti_app", os.path.join(ROOT, "backend", "app.py"))
+            _app = importlib.util.module_from_spec(spec)
+            sys.modules["drishti_app"] = _app
+            spec.loader.exec_module(_app)
             _app.bootstrap(False)
             _state["app"] = _app
             _state["error"] = None
