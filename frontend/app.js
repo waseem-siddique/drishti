@@ -923,7 +923,7 @@
   function buildPalette(q) {
     var ql = q.toLowerCase(), items = [];
     Object.keys(ROUTES).forEach(function (k) { if (!ql || ROUTES[k].title.toLowerCase().indexOf(ql) >= 0) items.push({ group: "Go to", label: ROUTES[k].title, hint: "g " + k[0], run: function () { location.hash = "#/" + k; } }); });
-    [["Toggle dark mode", toggleTheme], ["Show keyboard shortcuts", showShortcuts], ["Sign out", function () { signOut(); }]].forEach(function (c) { if (!ql || c[0].toLowerCase().indexOf(ql) >= 0) items.push({ group: "Commands", label: c[0], run: c[1] }); });
+    [["Toggle dark mode", toggleTheme], ["Show keyboard shortcuts", showShortcuts], ["Re-run detection", function () { var b = $("#rerun-detection"); if (b && !b.hidden) { b.click(); } }], ["Sign out", function () { signOut(); }]].forEach(function (c) { if (!ql || c[0].toLowerCase().indexOf(ql) >= 0) items.push({ group: "Commands", label: c[0], run: c[1] }); });
     [["Critical alerts", { severity: "critical" }], ["Overdue (SLA breached)", { sla: "breached" }], ["Assigned to me", { assignee: "me" }], ["Unassigned", { assignee: "none" }]].forEach(function (c) { if (!ql || c[0].toLowerCase().indexOf(ql) >= 0) items.push({ group: "Quick filters", label: c[0], run: function () { goQueue(c[1]); } }); });
     Palette.items = items; Palette.idx = 0; paintPalette();
     if (ql.length >= 2) {

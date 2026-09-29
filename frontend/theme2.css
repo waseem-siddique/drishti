@@ -197,3 +197,36 @@ img, svg, canvas { max-width: 100%; }
 .case__bar { flex-wrap: nowrap; min-width: 0; }
 .case__crumb { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @media (max-width: 640px) { .case__bar .btn__txt { display: none; } .case__bar .btn { padding: 8px 10px; } .case { padding-inline: 14px; } .props { grid-template-columns: 1fr; } .props > span { padding-bottom: 0; font-size: 12px; } }
+
+/* ===== v-final responsive hardening ===== */
+.app > *, .main, .content, #view, .grid > *, .card, .hello > * { min-width: 0; }
+@media (max-width: 1024px) { .app { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 1100px) { .grid--split, .grid--policy { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 640px) { .grid--policy { grid-template-columns: minmax(0, 1fr); } }
+.hello .row, .card__head, .toolbar { flex-wrap: wrap; }
+.list__item .grow { min-width: 0; }
+.list__item > .tiny { flex-shrink: 0; }
+img, svg, video, canvas { max-width: 100%; }
+.card--flush > table:not(.responsive) { min-width: 520px; }
+.list { grid-template-columns: minmax(0, 1fr); }
+.matrix { grid-template-columns: minmax(64px, 90px) repeat(4, minmax(0, 1fr)); }
+@media (max-width: 400px) { .matrix { font-size: 11.5px; } .matrix > div { padding: 6px 3px; } }
+
+/* mobile polish */
+@media (max-width: 900px) { .login__panel { padding-top: 64px; } .login__theme { top: 12px; right: 12px; } }
+@media (max-width: 640px) {
+  .toolbar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .toolbar > * { flex: none; min-width: 0; width: 100%; }
+  .toolbar > .search-inline, .toolbar > .btn, .toolbar > .spacer { grid-column: 1 / -1; }
+  .toolbar > .spacer { display: none; }
+  .toolbar .pill-select { width: 100%; } .toolbar .pill-select select { width: 100%; min-width: 0; text-overflow: ellipsis; }
+  .toolbar > .btn { justify-content: center; }
+  .drawer select, .case select { width: 100%; }
+}
+@media (max-width: 420px) {
+  #rerun-detection { display: none; }
+  .topbar { gap: 6px; }
+  .topbar .icon-btn { width: 40px; min-width: 40px; height: 40px; min-height: 40px; }
+  .topbar__title h1, .topbar__title h2, .topbar__title strong { font-size: 17px; }
+  .content { padding-left: max(10px, env(safe-area-inset-left)); padding-right: max(10px, env(safe-area-inset-right)); }
+}
