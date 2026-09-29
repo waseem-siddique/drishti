@@ -1,0 +1,5 @@
+{
+  "outputDirectory": "frontend",
+  "functions": { "api/index.py": { "includeFiles": "backend/**", "maxDuration": 30 } },
+  "rewrites": [ { "source": "/api/(.*)", "destination": "/api/index.py" } ]
+}
