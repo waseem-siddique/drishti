@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: drishti
-    runtime: python
-    plan: free
-    startCommand: python backend/app.py --host 0.0.0.0
-    envVars:
-      - key: DRISHTI_SECRET
-        generateValue: true
