@@ -11,8 +11,6 @@ DATA_DIR = os.environ.get("DRISHTI_DATA_DIR") or os.path.join(BASE_DIR, "data")
 DB_PATH = os.path.join(DATA_DIR, "drishti.db")
 
 SCHEMA = """
-PRAGMA journal_mode = WAL;
-
 CREATE TABLE IF NOT EXISTS users (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     username     TEXT UNIQUE NOT NULL,
@@ -165,6 +163,10 @@ def connect():
 
 
 def init_schema(conn):
+    try:
+        conn.execute("PRAGMA journal_mode = " + ("MEMORY" if os.environ.get("VERCEL") else "WAL"))
+    except sqlite3.Error:
+        pass
     conn.executescript(SCHEMA)
     # lightweight migrations for databases created by earlier versions
     cols = {r["name"] for r in conn.execute("PRAGMA table_info(alerts)").fetchall()}
