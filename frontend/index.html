@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="description" content="DRISHTI - explainable risk monitoring and case management for MPLAD Scheme works. Team Syntrix, Smart India Hackathon 2026 (PS 26102)." />
+<meta name="theme-color" content="#f5f3ee" />
+<title>DRISHTI · Explainable risk intelligence for MPLADS</title>
+<link rel="icon" href="assets/logo.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="theme.css" />
+<script>
+  (function () {
+    var saved = localStorage.getItem("drishti-theme");
+    var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", saved || (dark ? "dark" : "light"));
+  })();
+</script>
+</head>
+<body>
+
+<!-- ============================ LANDING ============================ -->
+<div id="landing" class="landing" hidden>
+  <header class="lnav">
+    <a class="lnav__brand" href="#/home"><img class="logo" src="assets/logo.png" alt="Team Syntrix logo" /><strong>DRISHTI</strong></a>
+    <nav class="lnav__links">
+      <a href="#problem" data-scroll>Problem statement</a>
+      <a href="#solution" data-scroll>Solution</a>
+      <a href="#features" data-scroll>Features</a>
+      <a href="#workflow" data-scroll>How it works</a>
+    </nav>
+    <div class="lnav__cta">
+      <button class="icon-btn icon-btn--ghost" data-theme-toggle title="Toggle theme" aria-label="Toggle dark or light theme">
+        <svg class="icon icon--sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
+        <svg class="icon icon--moon" viewBox="0 0 24 24"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <a class="btn btn--primary btn--sm" href="#/login" data-launch>Launch console</a>
+    </div>
+  </header>
+
+  <section class="lhero">
+    <span class="eyebrow">Smart India Hackathon 2026 · PS 26102 · MoSPI</span>
+    <h1>DRISHTI</h1>
+    <p class="lhero__tag">Explainable risk intelligence for MPLAD Scheme works.</p>
+    <p class="lhero__lead">DRISHTI links the records the MPLAD Scheme already produces into one case per work, scores every work for risk with the reasons attached, and gives officials a shared workspace to review, assign and close each case.</p>
+    <div class="row row--wrap lhero__ctas">
+      <a class="btn btn--primary" href="#/login" data-launch>Launch the console</a>
+      <a class="btn btn--ghost" href="#problem" data-scroll>Read the problem statement</a>
+    </div>
+    <div class="lhero__shot" aria-hidden="true">
+      <div class="shot__bar"><i></i><i></i><i></i><span>DRISHTI · Alert queue</span></div>
+      <div class="shot__body">
+        <div class="lp-row"><span class="lp-sev lp-sev--critical"></span><span class="lp-name">RO water plant, Udaipur</span><span class="lp-tag">COST_OVERRUN</span><span class="sla sla--breached">SLA breached</span><span class="lp-score">92</span></div>
+        <div class="lp-row"><span class="lp-sev lp-sev--critical"></span><span class="lp-name">Approach road, Mysuru</span><span class="lp-tag">STALLED_WORK</span><span class="sla sla--due_soon">Due in 2d</span><span class="lp-score">89</span></div>
+        <div class="lp-row"><span class="lp-sev lp-sev--high"></span><span class="lp-name">Dialysis unit equipment, Nashik</span><span class="lp-tag">DUPLICATE_WORK</span><span class="sla sla--on_track">6d left</span><span class="lp-score">71</span></div>
+        <div class="lp-row"><span class="lp-sev lp-sev--medium"></span><span class="lp-name">Smart classroom, Pune</span><span class="lp-tag">PAYMENT_WITHOUT_PROGRESS</span><span class="sla sla--on_track">21d left</span><span class="lp-score">48</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lsec" id="problem">
+    <div class="lsec__head"><span class="eyebrow">The problem statement</span><h2>PS 26102 · MPLADS</h2></div>
+    <div class="ps-card">
+      <div class="ps-card__main">
+        <p class="ps-card__label">Problem statement title</p>
+        <h3>Development of an AI-powered system to detect anomalies, fraud and inefficiencies in MPLAD Scheme implementation</h3>
+        <dl class="ps-meta">
+          <div><dt>Organisation</dt><dd>Ministry of Statistics and Programme Implementation (MoSPI)</dd></div>
+          <div><dt>Department</dt><dd>Data Informatics &amp; Innovation Division (DIID)</dd></div>
+          <div><dt>Theme</dt><dd>Smart Automation</dd></div>
+          <div><dt>Category</dt><dd>Software</dd></div>
+        </dl>
+      </div>
+      <div class="ps-card__side">
+        <h4>About MPLADS</h4>
+        <p>The Members of Parliament Local Area Development Scheme lets every MP recommend developmental works of a durable nature in their constituency, such as roads, drinking water, school buildings and health facilities. MoSPI administers the scheme. District authorities sanction and execute the works through implementing agencies.</p>
+      </div>
+    </div>
+    <div class="pain">
+      <div><strong>Thousands of works, few reviewers</strong><p>Manual review can only sample works. Most sanctions, payments and progress reports are never cross-checked.</p></div>
+      <div><strong>Records live in separate places</strong><p>Recommendations, estimates, instalments and completion reports are rarely read together as one story.</p></div>
+      <div><strong>Red flags hide in patterns</strong><p>Money released ahead of progress, split or duplicate works, stalled sites and cost outliers only show up across records.</p></div>
+      <div><strong>Alerts without reasons get ignored</strong><p>An officer cannot act on a black-box score. Every flag needs evidence, an owner and a deadline.</p></div>
+    </div>
+  </section>
+
+  <section class="lsec" id="solution">
+    <div class="lsec__head"><span class="eyebrow">Our solution</span><h2>Three explainable detection layers</h2><p>Each layer adds reason codes to a single 0–99 risk score. The score always ships with its explanation.</p></div>
+    <div class="layers">
+      <div><span class="layer-n">01</span><h4>Rules</h4><p>Cost overrun, payment without progress, stalled work, schedule overrun, duplicate work and spending bursts, encoded from scheme guidelines.</p></div>
+      <div><span class="layer-n">02</span><h4>Statistics</h4><p>Robust z-scores against peer works in the same category catch cost outliers and improbably fast completions.</p></div>
+      <div><span class="layer-n">03</span><h4>Anomaly model</h4><p>An isolation-forest style model over spend, progress, idle time and instalment shape surfaces patterns no rule anticipated.</p></div>
+    </div>
+  </section>
+
+  <section class="lsec" id="features">
+    <div class="lsec__head"><span class="eyebrow">Product</span><h2>Built for officers who have to act</h2></div>
+    <div class="feat">
+      <div><h4>Explainable case file</h4><p>Auto-written case brief, reason codes with % contribution, fund-flow check, evidence timeline and peer comparison.</p></div>
+      <div><h4>Case board with SLAs</h4><p>Drag cases from Open to Closed. Severity-based deadlines, breach alerts and one owner per case.</p></div>
+      <div><h4>Policy studio</h4><p>Tune rule weights and severity thresholds, preview the impact on every alert, then publish a versioned policy.</p></div>
+      <div><h4>Accountability scorecards</h4><p>A–E grades for implementing agencies, MPs and districts from their portfolio risk index and resolution rate.</p></div>
+      <div><h4>Collaboration</h4><p>Threaded discussion with @mentions, watchlists, a notification inbox and shared saved views.</p></div>
+      <div><h4>Inspection memo</h4><p>One-click printable memo with the evidence, reasons and sign-off block for field inspections.</p></div>
+      <div><h4>Command palette</h4><p>Press Ctrl K to jump to any work, MP, agency or screen. Keyboard shortcuts throughout.</p></div>
+      <div><h4>Role-based access</h4><p>Ministry, state and district scopes are enforced in SQL on the server. Every action is written to the audit trail.</p></div>
+    </div>
+  </section>
+
+  <section class="lsec" id="workflow">
+    <div class="lsec__head"><span class="eyebrow">How it works</span><h2>From raw records to a closed case</h2></div>
+    <div class="steps">
+      <div><strong>Collect</strong>Sanctions, estimates, payments, progress and completion reports.</div>
+      <div><strong>Link</strong>Match every record into one case per work.</div>
+      <div><strong>Detect</strong>Run rules, statistics and the anomaly model.</div>
+      <div><strong>Explain</strong>Score, reason codes, evidence and confidence.</div>
+      <div><strong>Act</strong>Assign an owner, track the SLA and record a decision.</div>
+      <div><strong>Learn</strong>Officer feedback and policy versions retune detection.</div>
+    </div>
+    <p class="lnote">DRISHTI raises risk signals for human review. It never makes an automated finding of fraud.</p>
+  </section>
+
+  <section class="lcta">
+    <h2>Ready when your team is</h2>
+    <p>Sign in as a ministry, state or district officer and start reviewing cases.</p>
+    <a class="btn btn--primary" href="#/login" data-launch>Launch the console</a>
+  </section>
+
+  <footer class="lfoot">
+    <div class="lfoot__brand"><img class="logo" src="assets/logo.png" alt="Team Syntrix logo" /><div><strong>DRISHTI</strong><span>Smart India Hackathon 2026 · PS 26102 · MoSPI (DIID)</span></div></div>
+    <p class="lfoot__credit">Developed by <b>TEAM SYNTRIX</b></p>
+    <p class="lfoot__small">© 2026 Team Syntrix. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- ============================ LOGIN ============================ -->
+<div id="login-screen" class="login" hidden>
+  <section class="login__story">
+    <div class="brand"><span class="brand__dot"></span><span class="brand__name">DRISHTI</span></div>
+    <div class="login__hero">
+      <h1><span>See it.</span><span>Assign it.</span><span>Close it.</span></h1>
+      <p>One desk for every MPLADS work under watch, with the reasons behind each risk score attached to the alert, not hidden behind it.</p>
+      <div class="login__stat"><strong>288</strong><span>works screened on every run</span></div>
+    </div>
+    <p class="login__foot">Built for scheme monitoring teams <i>&bull;</i> v2.0 <i>&bull;</i> <a href="#/home">Back to home</a></p>
+  </section>
+
+  <section class="login__panel">
+    <button class="icon-btn login__theme" data-theme-toggle title="Toggle theme" aria-label="Toggle dark or light theme">
+      <svg class="icon icon--sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
+      <svg class="icon icon--moon" viewBox="0 0 24 24"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+    </button>
+    <form id="login-form" class="login__card" autocomplete="on">
+      <div class="seg-tabs" role="tablist">
+        <button type="button" class="is-active" data-demo="ministry" role="tab">Ministry</button>
+        <button type="button" data-demo="state" role="tab">State</button>
+        <button type="button" data-demo="district" role="tab">District</button>
+      </div>
+      <div><h2 class="serif">Welcome back</h2><p class="muted">Sign in to review the cases assigned to you.</p></div>
+      <label class="field field--caps"><span>Username</span><input id="login-username" name="username" value="ministry" placeholder="officer.name" required autocomplete="username" /></label>
+      <label class="field field--caps"><span>Password</span><input id="login-password" name="password" type="password" value="drishti" required autocomplete="current-password" /></label>
+      <label class="check-row"><input type="checkbox" id="login-keep" checked /> Keep me signed in on this device</label>
+      <div id="login-error" class="alert-inline" hidden></div>
+      <button class="btn btn--primary btn--block btn--lg" type="submit">Sign in</button>
+      <div class="login__dev"><span>Developed by <b>TEAM SYNTRIX</b></span></div>
+    </form>
+  </section>
+</div>
+
+<!-- ============================ APP SHELL ============================ -->
+<div id="app" class="app" hidden>
+  <div class="scrim" data-close-sidebar></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="ws">
+      <span class="brand__dot"></span>
+      <div class="ws__text"><strong class="brand__name">DRISHTI</strong><span id="ws-scope">All India</span></div>
+      <button class="icon-btn icon-btn--ghost sidebar__close" data-close-sidebar aria-label="Close navigation"><svg class="icon" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+
+    <nav class="nav" aria-label="Main">
+      <div class="nav__group">Monitor</div>
+      <a class="nav__item" href="#/dashboard" data-route="dashboard"><svg class="icon" viewBox="0 0 24 24"><path d="M4 13h6V4H4zM14 20h6v-9h-6zM4 20h6v-4H4zM14 8h6V4h-6z"/></svg><span>Overview</span></a>
+      <a class="nav__item" href="#/alerts" data-route="alerts"><svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Alert queue</span><span class="nav__count" id="nav-alert-count"></span></a>
+      <a class="nav__item" href="#/board" data-route="board"><svg class="icon" viewBox="0 0 24 24"><rect x="3.5" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="10" rx="1.5"/><rect x="16.5" y="4" width="4" height="13" rx="1.5"/></svg><span>Case board</span><span class="nav__count nav__count--red" id="nav-breach-count" title="SLA breached"></span></a>
+      <a class="nav__item" href="#/districts" data-route="districts"><svg class="icon" viewBox="0 0 24 24"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5zM9 4v13M15 6.5v13"/></svg><span>Risk map</span></a>
+      <a class="nav__item" href="#/watchlist" data-route="watchlist"><svg class="icon" viewBox="0 0 24 24"><path d="m12 4 2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 16.4l-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z"/></svg><span>Watchlist</span></a>
+
+      <div class="nav__group">Insights</div>
+      <a class="nav__item" href="#/scorecards" data-route="scorecards"><svg class="icon" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></svg><span>Scorecards</span></a>
+      <a class="nav__item" href="#/analytics" data-route="analytics"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16V9M12 16v-4M16 16V7"/></svg><span>Analytics</span></a>
+      <a class="nav__item" href="#/quality" data-route="quality"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.4 8-8 9-4.6-1-8-4-8-9V6zM9 12l2 2 4-4"/></svg><span>Data quality</span></a>
+
+      <div class="nav__group">Govern</div>
+      <a class="nav__item" href="#/policy" data-route="policy"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span>Policy studio</span></a>
+      <a class="nav__item" href="#/audit" data-route="audit"><svg class="icon" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 13h7M9 17h7"/></svg><span>Audit trail</span></a>
+      <a class="nav__item" href="#/about" data-route="about"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6v.5"/></svg><span>How it works</span></a>
+    </nav>
+
+    <div class="sidebar__foot">
+      <div class="sla-mini" id="sla-mini"></div>
+      <div class="side-user"><span class="avatar" id="side-initials">AS</span><div><strong id="side-name">—</strong><span id="side-role">—</span></div></div>
+      <button class="side-out" id="logout-side">Sign out</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn icon-btn--ghost topbar__menu" data-open-sidebar aria-label="Open navigation"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="topbar__title">
+        <h1 id="page-title">Overview</h1>
+        <p id="page-subtitle">Portfolio-wide risk picture</p>
+      </div>
+      <div class="topbar__actions">
+        <button class="search-trigger" data-open-palette><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4-4"/></svg><span>Search cases…</span><kbd>/</kbd></button>
+        <button class="btn btn--ghost btn--sm" id="rerun-detection" title="Re-run the detection engine">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4h-4"/></svg><span class="hide-sm">Run detection</span>
+        </button>
+        <div class="pop-anchor">
+          <button class="icon-btn icon-btn--ghost" id="notif-btn" aria-label="Notifications" title="Notifications">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6v3.5L4.5 16h15L18 12.5V9a6 6 0 0 0-6-6zM9.5 19a2.5 2.5 0 0 0 5 0"/></svg>
+            <span class="dot-badge" id="notif-count" hidden></span>
+          </button>
+          <div class="popover popover--notif" id="notif-pop" hidden></div>
+        </div>
+        <button class="icon-btn icon-btn--ghost" data-theme-toggle title="Toggle theme" aria-label="Toggle dark or light theme">
+          <svg class="icon icon--sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        </button>
+        <div class="pop-anchor">
+          <button class="user" id="user-btn" aria-label="Account">
+            <span class="avatar" id="user-initials">AS</span>
+            <span class="user__meta hide-md"><strong id="user-name">—</strong><span id="user-role">—</span></span>
+          </button>
+          <div class="popover popover--menu" id="user-pop" hidden>
+            <button class="menu-item" data-open-shortcuts>Keyboard shortcuts <kbd>?</kbd></button>
+            <button class="menu-item" data-theme-toggle>Toggle theme</button>
+            <div class="menu-sep"></div>
+            <button class="menu-item menu-item--danger" id="logout">Sign out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content" id="view"></main>
+    <footer class="app-foot"><span>Developed by <b>TEAM SYNTRIX</b></span><span class="app-foot__note">DRISHTI · Alerts are risk signals for review, not findings of fraud.</span></footer>
+  </div>
+
+  <!-- Case drawer -->
+  <div class="drawer" id="case-drawer" hidden>
+    <div class="drawer__scrim" data-close-drawer></div>
+    <section class="drawer__panel" role="dialog" aria-modal="true" aria-label="Case detail"><div id="case-body"></div></section>
+  </div>
+
+  <!-- Command palette -->
+  <div class="modal" id="palette" hidden>
+    <div class="modal__scrim" data-close-modal></div>
+    <div class="palette" role="dialog" aria-label="Command palette">
+      <div class="palette__input"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4-4"/></svg>
+        <input id="palette-input" placeholder="Search works, MPs, agencies, or type a command…" autocomplete="off" /></div>
+      <div class="palette__list" id="palette-list"></div>
+      <div class="palette__foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span></div>
+    </div>
+  </div>
+
+  <!-- Generic modal -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__scrim" data-close-modal></div>
+    <div class="dialog" role="dialog" aria-modal="true" id="modal-body"></div>
+  </div>
+
+  <!-- Bulk action bar -->
+  <div class="bulkbar" id="bulkbar" hidden></div>
+
+  <div class="toasts" id="toasts"></div>
+</div>
+
+<script src="charts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

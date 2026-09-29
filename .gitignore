@@ -1,0 +1,16 @@
+# generated demo database and extracts
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+
+# os / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

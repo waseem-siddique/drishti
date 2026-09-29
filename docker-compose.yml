@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: drishti
+      POSTGRES_PASSWORD: drishti
+      POSTGRES_DB: drishti
+    ports:
+      - "5432:5432"
+    volumes:
+      - drishti-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U drishti"]
+      interval: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://drishti:drishti@postgres:5432/drishti
+      JWT_SECRET: change-me-before-any-shared-deployment
+      CORS_ORIGINS: http://localhost:3000
+      LLM_PROVIDER: anthropic
+      LLM_MODEL: claude-opus-5
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+
+volumes:
+  drishti-pgdata:
