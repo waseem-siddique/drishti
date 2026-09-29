@@ -14,7 +14,7 @@
     options: null, users: null, views: null,
     selected: {},
     focusRow: -1,
-    lastItems: []
+    lastItems: [], drafts: {}, policyDraft: null, scroll: {}, scoreBy: "agency"
   };
 
   var ROUTES = {
@@ -72,7 +72,7 @@
   }
   function codeLabel(c) { return String(c || "").replace(/_/g, " ").toLowerCase().replace(/^\w/, function (m) { return m.toUpperCase(); }); }
   function initials(name) { return String(name || "?").replace(/\(.*\)/, "").trim().split(/\s+/).filter(function (p) { return /[A-Za-z]/.test(p); }).slice(-2).map(function (p) { return p.replace(/[^A-Za-z]/g, "")[0] || ""; }).join("").toUpperCase() || "?"; }
-  var AV_COLORS = ["#2783DE", "#46A171", "#D5803B", "#9B6BC4", "#D1628E", "#3AA6B9", "#C27D2E", "#6D7FD6"];
+  var AV_COLORS = ["#191919", "#F15025", "#55595B", "#7A7E80", "#C23611", "#3A3D3F", "#8B8F8D", "#D9421A"];
   function avColor(key) { var h = 0; String(key || "").split("").forEach(function (c) { h = (h * 31 + c.charCodeAt(0)) >>> 0; }); return AV_COLORS[h % AV_COLORS.length]; }
   function avatar(username, name, lg) {
     if (!username) return '<span class="avatar avatar--empty' + (lg ? " avatar--lg" : "") + '" title="Unassigned">?</span>';
@@ -80,24 +80,24 @@
   }
   function svgIcon(path) { return '<svg class="icon" viewBox="0 0 24 24">' + path + "</svg>"; }
   var ICONS = {
-    alert: '<path d="M12 4 2.8 19.5h18.4zM12 10v4.5M12 17.2v.3"/>',
-    clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
-    user: '<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/>',
-    inbox: '<path d="M4 13.5 6.5 5h11l2.5 8.5V19H4zM4 13.5h5a3 3 0 0 0 6 0h5"/>',
-    check: '<path d="m5 12.5 4.2 4.2L19 7"/>',
-    star: '<path d="m12 4 2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 16.4l-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z"/>',
-    chat: '<path d="M5 5h14v10H9.5L5 19z"/>',
-    arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
-    print: '<path d="M7 9V4h10v5M7 17H5v-6h14v6h-2M7 14h10v6H7z"/>',
-    close: '<path d="M6 6l12 12M18 6L6 18"/>',
-    sparkle: '<path d="M12 3.5 13.8 10 20.5 12l-6.7 2L12 20.5 10.2 14 3.5 12l6.7-2z"/>',
-    download: '<path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/>',
-    policy: '<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>',
-    search: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4-4"/>',
-    grid: '<path d="M4 13h6V4H4zM14 20h6v-9h-6zM4 20h6v-4H4zM14 8h6V4h-6z"/>',
-    moon: '<path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/>',
-    refresh: '<path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4h-4"/>',
-    out: '<path d="M14 4h5v16h-5M10 8l-4 4 4 4M6 12h10"/>'
+    alert: '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
+    clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    user: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+    inbox: '<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    star: '<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>',
+    chat: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    arrow: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+    print: '<path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/><rect x="6" y="14" width="12" height="8" rx="1"/>',
+    close: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+    sparkle: '<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>',
+    download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>',
+    policy: '<line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/>',
+    search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+    grid: '<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>',
+    moon: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+    refresh: '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>',
+    out: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/>'
   };
 
   function toast(message, kind) {
@@ -199,7 +199,7 @@
   function signOut(silent) {
     State.token = ""; State.user = null; State.options = null; State.users = null;
     localStorage.removeItem("drishti-token"); localStorage.removeItem("drishti-user");
-    closeDrawer(); closeModals();
+    closeDrawer(); closeModals(); Persist.clear();
     location.hash = "#/home";
     if (!silent) toast("Signed out");
   }
@@ -660,7 +660,7 @@
     loading(view);
     api("/api/policy").then(function (p) {
       var canPublish = State.user && State.user.role === "ministry";
-      var draft = JSON.parse(JSON.stringify(p.active));
+      var draft = JSON.parse(JSON.stringify(State.policyDraft || p.active));
       var lastSim = null;
       view.innerHTML = '<div class="grid grid--policy"><div><section class="card"><div class="card__head"><div><h3>Reason weights</h3><p>Points each signal adds to the risk score (0\u201360)</p></div><button class="btn btn--quiet btn--sm" id="pol-reset">Reset to defaults</button></div>' +
         p.rules.map(function (r) {
@@ -722,16 +722,16 @@
         i.addEventListener("input", function () {
           var v = Number(i.value);
           if (i.dataset.w) draft.weights[i.dataset.w] = v; else if (i.dataset.t) draft.thresholds[i.dataset.t] = v; else draft.sla_days[i.dataset.s] = v;
-          sync(); simulate();
+          State.policyDraft = JSON.parse(JSON.stringify(draft)); sync(); simulate();
         });
       });
-      $("#pol-reset").addEventListener("click", function () { draft = JSON.parse(JSON.stringify(p.defaults)); sync(); simulate(); });
+      $("#pol-reset").addEventListener("click", function () { draft = JSON.parse(JSON.stringify(p.defaults)); State.policyDraft = JSON.parse(JSON.stringify(draft)); sync(); simulate(); });
       var pub = $("#pol-publish");
       if (pub) pub.addEventListener("click", function () {
         var body = Object.assign({}, draft, { note: $("#pol-note").value });
         pub.disabled = true;
         api("/api/policy/publish", { method: "POST", body: body }).then(function (np) {
-          p = np; draft = JSON.parse(JSON.stringify(np.active)); paintVersions(np.versions); sync(); simulate();
+          p = np; State.policyDraft = null; delete State.drafts["pol-note"]; draft = JSON.parse(JSON.stringify(np.active)); paintVersions(np.versions); sync(); simulate();
           $("#pol-note").value = ""; State.options = null; toast("Policy published. Alerts rescored.", "success"); refreshNotifications();
         }).catch(function (e) { toast(e.message, "error"); }).then(function () { pub.disabled = false; });
       });
@@ -776,8 +776,8 @@
     var users = State.users || [];
     var e = a ? a.evidence : {};
     var html = '<div class="case__bar"><div class="case__crumb"><span class="mono">' + esc(w.work_id) + "</span></div><span class=\"spacer\"></span>" +
-      '<button class="btn btn--ghost btn--sm' + (d.watching ? " is-on" : "") + '" id="c-watch">' + svgIcon(ICONS.star) + '<span>' + (d.watching ? "Watching" : "Watch") + "</span></button>" +
-      '<button class="btn btn--ghost btn--sm" id="c-memo">' + svgIcon(ICONS.print) + "<span>Inspection memo</span></button>" +
+      '<button class="btn btn--ghost btn--sm' + (d.watching ? " is-on" : "") + '" id="c-watch">' + svgIcon(ICONS.star) + '<span class="btn__txt">' + (d.watching ? "Watching" : "Watch") + "</span></button>" +
+      '<button class="btn btn--ghost btn--sm" id="c-memo">' + svgIcon(ICONS.print) + '<span class="btn__txt">Inspection memo</span></button>' +
       '<button class="icon-btn icon-btn--ghost" data-close-drawer aria-label="Close">' + svgIcon(ICONS.close) + "</button></div>" +
       '<div class="case"><div class="case__title"><h2>' + esc(w.work_name) + '</h2><div class="case__meta">' +
       (a ? sevBadge(a.severity) + statusPill(a.status) + slaChip(a.sla, a.sla_hours) : '<span class="badge badge--ok">No active alert</span>') +
@@ -785,12 +785,12 @@
     if (a) {
       html += '<div class="brief"><div>' + svgIcon(ICONS.sparkle) + '</div><div><div class="brief__label">Auto case brief</div><div class="brief__text">' + briefText(w, a) + "</div>" +
         (next ? '<div class="brief__text" style="margin-top:6px"><b>Suggested next step:</b> ' + esc(next) + "</div>" : "") + "</div></div>";
-      html += '<div style="display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center"><div class="props">' +
+      html += '<div class="case__top"><div class="props">' +
         "<span>Assignee</span><div><select id=\"c-assignee\"><option value=\"\">Unassigned</option>" + users.map(function (u) { return '<option value="' + esc(u.username) + '"' + (u.username === a.assignee ? " selected" : "") + ">" + esc(u.name) + "</option>"; }).join("") + "</select></div>" +
         "<span>Status</span><div><select id=\"c-status\">" + [["open", "Open"], ["in_review", "In review"], ["actioned", "Escalated"], ["dismissed", "Closed"]].map(function (s) { return '<option value="' + s[0] + '"' + (s[0] === a.status ? " selected" : "") + ">" + s[1] + "</option>"; }).join("") + "</select></div>" +
         "<span>SLA due</span><div>" + dateFmt(a.due_at) + " " + slaChip(a.sla, a.sla_hours) + "</div>" +
         "<span>Confidence</span><div>" + Math.round((a.confidence || 0) * 100) + "% data completeness</div>" +
-        "<span>Raised</span><div>" + ago(a.created_at) + '</div></div><div style="justify-self:center" id="c-gauge"></div></div>';
+        "<span>Raised</span><div>" + ago(a.created_at) + '</div></div><div class="case__gauge" id="c-gauge"></div></div>';
     }
     html += '<div class="tabs" id="c-tabs">' + [["overview", "Overview"], ["timeline", "Timeline"], ["discussion", "Discussion", d.comments.length], ["activity", "Activity", a ? a.actions.length : 0]].map(function (t) {
       return '<button class="tab' + (State.caseTab === t[0] ? " is-active" : "") + '" data-tab="' + t[0] + '">' + t[1] + (t[2] ? ' <span class="n">' + t[2] + "</span>" : "") + "</button>";
@@ -843,7 +843,7 @@
         var v = $("#c-comment").value.trim(); if (!v) return;
         post.disabled = true;
         api("/api/works/" + encodeURIComponent(w.work_id) + "/comments", { method: "POST", body: { body: v } }).then(function (r) {
-          d.comments = r.items; State.caseTab = "discussion"; paintCase(d); toast("Comment posted", "success");
+          delete State.drafts["c-comment"]; d.comments = r.items; State.caseTab = "discussion"; paintCase(d); toast("Comment posted", "success");
         }).catch(function (er) { toast(er.message, "error"); post.disabled = false; });
       });
     }
@@ -862,7 +862,7 @@
       $("#c-status").addEventListener("change", function (ev) { api("/api/alerts/" + a.id + "/status", { method: "POST", body: { status: ev.target.value } }).then(function () { refresh("Status updated"); }).catch(function (er) { toast(er.message, "error"); }); });
       $$("[data-action]", body).forEach(function (b) {
         b.addEventListener("click", function () {
-          api("/api/alerts/" + a.id + "/action", { method: "POST", body: { action: b.dataset.action, note: $("#c-note").value } }).then(function () { State.caseTab = "activity"; refresh("Decision recorded"); }).catch(function (er) { toast(er.message, "error"); });
+          api("/api/alerts/" + a.id + "/action", { method: "POST", body: { action: b.dataset.action, note: $("#c-note").value } }).then(function () { delete State.drafts["c-note"]; State.caseTab = "activity"; refresh("Decision recorded"); }).catch(function (er) { toast(er.message, "error"); });
         });
       });
       $$("[data-fb]", body).forEach(function (b) { b.addEventListener("click", function () { api("/api/alerts/" + a.id + "/feedback", { method: "POST", body: { useful: b.dataset.fb === "1" } }).then(function () { toast("Thanks for the feedback", "success"); }); }); });
@@ -995,6 +995,54 @@
     })();
   }
 
+  /* ----------------------------- state preservation ---------------------
+     Folding, unfolding, rotating, resizing and OS theme/config changes must
+     never lose the officer's place. UI state is written to storage on every
+     lifecycle event and restored on boot. */
+  var DRAFT_IDS = ["c-comment", "c-note", "pol-note", "view-name"];
+  var Persist = {
+    key: "drishti-ui",
+    save: function () {
+      if (!State.token) return;
+      var hash = location.hash || "#/dashboard";
+      State.scroll[hash] = window.scrollY;
+      var panel = $(".drawer__panel");
+      try {
+        localStorage.setItem(Persist.key, JSON.stringify({
+          ts: Date.now(), user: State.user && State.user.username, hash: hash, filters: State.filters, activeView: State.activeView,
+          scoreBy: State.scoreBy, openWork: $("#case-drawer").hidden ? null : State.openWork, caseTab: State.caseTab,
+          drawerScroll: panel ? panel.scrollTop : 0, scroll: State.scroll, drafts: State.drafts, policyDraft: State.policyDraft,
+          navOpen: $("#app").classList.contains("nav-open"), paletteOpen: !$("#palette").hidden, paletteQ: $("#palette-input").value
+        }));
+      } catch (e) {}
+    },
+    load: function () {
+      try {
+        var s = JSON.parse(localStorage.getItem(Persist.key) || "null");
+        if (!s || !State.token || s.user !== (State.user && State.user.username) || Date.now() - s.ts > 12 * 3600 * 1000) return null;
+        State.filters = Object.assign({}, DEFAULT_FILTERS, s.filters || {}); State.activeView = s.activeView || null;
+        State.scoreBy = s.scoreBy || "agency"; State.scroll = s.scroll || {}; State.drafts = s.drafts || {}; State.policyDraft = s.policyDraft || null;
+        return s;
+      } catch (e) { return null; }
+    },
+    clear: function () { try { localStorage.removeItem(Persist.key); } catch (e) {} State.drafts = {}; State.policyDraft = null; State.scroll = {}; },
+    restoreDrafts: function () {
+      DRAFT_IDS.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && State.drafts[id] != null && !el.dataset.restored) { el.value = State.drafts[id]; el.dataset.restored = "1"; }
+      });
+    }
+  };
+  document.addEventListener("input", function (e) { if (e.target.id && DRAFT_IDS.indexOf(e.target.id) >= 0) State.drafts[e.target.id] = e.target.value; });
+  new MutationObserver(function () { Persist.restoreDrafts(); }).observe(document.body, { childList: true, subtree: true });
+  var saveTimer;
+  function saveSoon() { clearTimeout(saveTimer); saveTimer = setTimeout(Persist.save, 250); }
+  ["resize", "orientationchange", "pagehide", "hashchange", "blur"].forEach(function (ev) { window.addEventListener(ev, function () { if (ev === "pagehide" || ev === "blur") Persist.save(); else saveSoon(); }); });
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "hidden") Persist.save(); });
+  window.addEventListener("scroll", saveSoon, { passive: true });
+  document.addEventListener("click", saveSoon);
+  if (window.matchMedia) { try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () { if (!localStorage.getItem("drishti-theme")) document.documentElement.setAttribute("data-theme", matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); }); } catch (e) {} }
+
   /* ----------------------------- boot ----------------------------------- */
   function boot() {
     document.addEventListener("click", function (e) {
@@ -1070,7 +1118,18 @@
 
     window.addEventListener("hashchange", router);
     setInterval(refreshNotifications, 60000);
+    var saved = Persist.load();
+    if (saved && saved.hash && !location.hash) location.hash = saved.hash;
     router();
+    if (saved) {
+      setTimeout(function () { var y = State.scroll[location.hash || "#/dashboard"]; if (y) window.scrollTo(0, y); }, 500);
+      if (saved.openWork) {
+        openCase(saved.openWork, saved.caseTab);
+        setTimeout(function () { var p = $(".drawer__panel"); if (p && saved.drawerScroll) p.scrollTop = saved.drawerScroll; }, 700);
+      }
+      if (saved.navOpen && document.documentElement.dataset.layout === "compact") $("#app").classList.add("nav-open");
+      if (saved.paletteOpen) { openPalette(); $("#palette-input").value = saved.paletteQ || ""; buildPalette(saved.paletteQ || ""); }
+    }
   }
 
   boot();

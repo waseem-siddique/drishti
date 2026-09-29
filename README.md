@@ -29,6 +29,13 @@ It does not just show data; it helps officials decide what needs attention first
 - **Command palette** (Ctrl/Cmd K) and keyboard shortcuts (`?` for the list).
 - **Printable inspection memo** for field visits, plus light and dark themes.
 
+## Design and layout
+
+- Palette: `#F15025` orange, `#FFFFFF`, `#E6E8E6`, `#CED0CE`, `#191919`.
+- Lucide icons (`frontend/icons.js`), serif and Inter type, light and dark themes.
+- Fluid layout for phones, folded and unfolded foldables, tablets and desktops. Rotation and resizing keep your place: filters, open case, scroll and unsent drafts are restored.
+- Effects: interactive dot grid, blur-in headings, spotlight cards, scroll reveal and a marquee (`frontend/fx.js`).
+
 ## How to run
 
 1. Install Python 3.9 or newer (nothing else is needed).

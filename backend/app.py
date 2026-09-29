@@ -8,6 +8,7 @@ Runs on the Python standard library only:
 import argparse
 import json
 import mimetypes
+mimetypes.add_type("application/manifest+json", ".webmanifest")
 import os
 import sqlite3
 import sys
@@ -640,8 +641,8 @@ def bootstrap(reseed=False):
 
 def main():
     parser = argparse.ArgumentParser(description="DRISHTI server")
-    parser.add_argument("--host", default="127.0.0.1")
-    parser.add_argument("--port", type=int, default=8000)
+    parser.add_argument("--host", default=os.environ.get("HOST", "127.0.0.1"))
+    parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", "8000")))
     parser.add_argument("--reseed", action="store_true", help="rebuild the demo dataset")
     args = parser.parse_args()
 

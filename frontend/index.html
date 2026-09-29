@@ -2,9 +2,9 @@
 <html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
 <meta name="description" content="DRISHTI - explainable risk monitoring and case management for MPLAD Scheme works. Team Syntrix, Smart India Hackathon 2026 (PS 26102)." />
-<meta name="theme-color" content="#f5f3ee" />
+<meta name="theme-color" content="#e6e8e6" />
 <title>DRISHTI · Explainable risk intelligence for MPLADS</title>
 <link rel="icon" href="assets/logo.png" type="image/png" />
 <link rel="apple-touch-icon" href="assets/logo.png" />
@@ -13,6 +13,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="theme.css" />
+<link rel="stylesheet" href="theme2.css" />
+<link rel="manifest" href="manifest.webmanifest" />
 <script>
   (function () {
     var saved = localStorage.getItem("drishti-theme");
@@ -22,6 +24,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#view">Skip to content</a>
 
 <!-- ============================ LANDING ============================ -->
 <div id="landing" class="landing" hidden>
@@ -35,17 +38,18 @@
     </nav>
     <div class="lnav__cta">
       <button class="icon-btn icon-btn--ghost" data-theme-toggle title="Toggle theme" aria-label="Toggle dark or light theme">
-        <svg class="icon icon--sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
-        <svg class="icon icon--moon" viewBox="0 0 24 24"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        <svg class="icon icon--sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        <svg class="icon icon--moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       </button>
       <a class="btn btn--primary btn--sm" href="#/login" data-launch>Launch console</a>
     </div>
   </header>
 
   <section class="lhero">
+    <canvas class="dotgrid" data-dotgrid aria-hidden="true"></canvas>
     <span class="eyebrow">Smart India Hackathon 2026 · PS 26102 · MoSPI</span>
-    <h1>DRISHTI</h1>
-    <p class="lhero__tag">Explainable risk intelligence for MPLAD Scheme works.</p>
+    <h1 data-split="chars" aria-label="DRISHTI">DRISHTI</h1>
+    <p class="lhero__tag shiny">Explainable risk intelligence for MPLAD Scheme works.</p>
     <p class="lhero__lead">DRISHTI links the records the MPLAD Scheme already produces into one case per work, scores every work for risk with the reasons attached, and gives officials a shared workspace to review, assign and close each case.</p>
     <div class="row row--wrap lhero__ctas">
       <a class="btn btn--primary" href="#/login" data-launch>Launch the console</a>
@@ -61,6 +65,8 @@
       </div>
     </div>
   </section>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee__track"><span><i data-lu="TriangleAlert"></i>Cost overrun</span><span><i data-lu="Clock"></i>Payment without progress</span><span><i data-lu="Radar"></i>Stalled work</span><span><i data-lu="Layers"></i>Duplicate work</span><span><i data-lu="ChartColumn"></i>Spending burst</span><span><i data-lu="Scale"></i>Cost outlier</span><span><i data-lu="Sparkles"></i>Rapid completion</span><span><i data-lu="BrainCircuit"></i>ML anomaly</span><span><i data-lu="TriangleAlert"></i>Cost overrun</span><span><i data-lu="Clock"></i>Payment without progress</span><span><i data-lu="Radar"></i>Stalled work</span><span><i data-lu="Layers"></i>Duplicate work</span><span><i data-lu="ChartColumn"></i>Spending burst</span><span><i data-lu="Scale"></i>Cost outlier</span><span><i data-lu="Sparkles"></i>Rapid completion</span><span><i data-lu="BrainCircuit"></i>ML anomaly</span></div></div>
 
   <section class="lsec" id="problem">
     <div class="lsec__head"><span class="eyebrow">The problem statement</span><h2>PS 26102 · MPLADS</h2></div>
@@ -81,10 +87,10 @@
       </div>
     </div>
     <div class="pain">
-      <div><strong>Thousands of works, few reviewers</strong><p>Manual review can only sample works. Most sanctions, payments and progress reports are never cross-checked.</p></div>
-      <div><strong>Records live in separate places</strong><p>Recommendations, estimates, instalments and completion reports are rarely read together as one story.</p></div>
-      <div><strong>Red flags hide in patterns</strong><p>Money released ahead of progress, split or duplicate works, stalled sites and cost outliers only show up across records.</p></div>
-      <div><strong>Alerts without reasons get ignored</strong><p>An officer cannot act on a black-box score. Every flag needs evidence, an owner and a deadline.</p></div>
+      <div><span class="ico"><i data-lu="Users"></i></span><strong>Thousands of works, few reviewers</strong><p>Manual review can only sample works. Most sanctions, payments and progress reports are never cross-checked.</p></div>
+      <div><span class="ico"><i data-lu="Layers"></i></span><strong>Records live in separate places</strong><p>Recommendations, estimates, instalments and completion reports are rarely read together as one story.</p></div>
+      <div><span class="ico"><i data-lu="Radar"></i></span><strong>Red flags hide in patterns</strong><p>Money released ahead of progress, split or duplicate works, stalled sites and cost outliers only show up across records.</p></div>
+      <div><span class="ico"><i data-lu="TriangleAlert"></i></span><strong>Alerts without reasons get ignored</strong><p>An officer cannot act on a black-box score. Every flag needs evidence, an owner and a deadline.</p></div>
     </div>
   </section>
 
@@ -100,14 +106,14 @@
   <section class="lsec" id="features">
     <div class="lsec__head"><span class="eyebrow">Product</span><h2>Built for officers who have to act</h2></div>
     <div class="feat">
-      <div><h4>Explainable case file</h4><p>Auto-written case brief, reason codes with % contribution, fund-flow check, evidence timeline and peer comparison.</p></div>
-      <div><h4>Case board with SLAs</h4><p>Drag cases from Open to Closed. Severity-based deadlines, breach alerts and one owner per case.</p></div>
-      <div><h4>Policy studio</h4><p>Tune rule weights and severity thresholds, preview the impact on every alert, then publish a versioned policy.</p></div>
-      <div><h4>Accountability scorecards</h4><p>A–E grades for implementing agencies, MPs and districts from their portfolio risk index and resolution rate.</p></div>
-      <div><h4>Collaboration</h4><p>Threaded discussion with @mentions, watchlists, a notification inbox and shared saved views.</p></div>
-      <div><h4>Inspection memo</h4><p>One-click printable memo with the evidence, reasons and sign-off block for field inspections.</p></div>
-      <div><h4>Command palette</h4><p>Press Ctrl K to jump to any work, MP, agency or screen. Keyboard shortcuts throughout.</p></div>
-      <div><h4>Role-based access</h4><p>Ministry, state and district scopes are enforced in SQL on the server. Every action is written to the audit trail.</p></div>
+      <div><span class="ico"><i data-lu="FileSearch"></i></span><h4>Explainable case file</h4><p>Auto-written case brief, reason codes with % contribution, fund-flow check, evidence timeline and peer comparison.</p></div>
+      <div><span class="ico"><i data-lu="Kanban"></i></span><h4>Case board with SLAs</h4><p>Drag cases from Open to Closed. Severity-based deadlines, breach alerts and one owner per case.</p></div>
+      <div><span class="ico"><i data-lu="SlidersHorizontal"></i></span><h4>Policy studio</h4><p>Tune rule weights and severity thresholds, preview the impact on every alert, then publish a versioned policy.</p></div>
+      <div><span class="ico"><i data-lu="Trophy"></i></span><h4>Accountability scorecards</h4><p>A–E grades for implementing agencies, MPs and districts from their portfolio risk index and resolution rate.</p></div>
+      <div><span class="ico"><i data-lu="MessageSquare"></i></span><h4>Collaboration</h4><p>Threaded discussion with @mentions, watchlists, a notification inbox and shared saved views.</p></div>
+      <div><span class="ico"><i data-lu="Printer"></i></span><h4>Inspection memo</h4><p>One-click printable memo with the evidence, reasons and sign-off block for field inspections.</p></div>
+      <div><span class="ico"><i data-lu="Command"></i></span><h4>Command palette</h4><p>Press Ctrl K to jump to any work, MP, agency or screen. Keyboard shortcuts throughout.</p></div>
+      <div><span class="ico"><i data-lu="Lock"></i></span><h4>Role-based access</h4><p>Ministry, state and district scopes are enforced in SQL on the server. Every action is written to the audit trail.</p></div>
     </div>
   </section>
 
@@ -140,6 +146,7 @@
 <!-- ============================ LOGIN ============================ -->
 <div id="login-screen" class="login" hidden>
   <section class="login__story">
+    <canvas class="dotgrid" data-dotgrid data-tone="dark" aria-hidden="true"></canvas>
     <div class="brand"><span class="brand__dot"></span><span class="brand__name">DRISHTI</span></div>
     <div class="login__hero">
       <h1><span>See it.</span><span>Assign it.</span><span>Close it.</span></h1>
@@ -151,8 +158,8 @@
 
   <section class="login__panel">
     <button class="icon-btn login__theme" data-theme-toggle title="Toggle theme" aria-label="Toggle dark or light theme">
-      <svg class="icon icon--sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
-      <svg class="icon icon--moon" viewBox="0 0 24 24"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+      <svg class="icon icon--sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      <svg class="icon icon--moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
     </button>
     <form id="login-form" class="login__card" autocomplete="on">
       <div class="seg-tabs" role="tablist">
@@ -179,26 +186,26 @@
     <div class="ws">
       <span class="brand__dot"></span>
       <div class="ws__text"><strong class="brand__name">DRISHTI</strong><span id="ws-scope">All India</span></div>
-      <button class="icon-btn icon-btn--ghost sidebar__close" data-close-sidebar aria-label="Close navigation"><svg class="icon" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <button class="icon-btn icon-btn--ghost sidebar__close" data-close-sidebar aria-label="Close navigation"><svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
     </div>
 
     <nav class="nav" aria-label="Main">
       <div class="nav__group">Monitor</div>
-      <a class="nav__item" href="#/dashboard" data-route="dashboard"><svg class="icon" viewBox="0 0 24 24"><path d="M4 13h6V4H4zM14 20h6v-9h-6zM4 20h6v-4H4zM14 8h6V4h-6z"/></svg><span>Overview</span></a>
-      <a class="nav__item" href="#/alerts" data-route="alerts"><svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Alert queue</span><span class="nav__count" id="nav-alert-count"></span></a>
-      <a class="nav__item" href="#/board" data-route="board"><svg class="icon" viewBox="0 0 24 24"><rect x="3.5" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="10" rx="1.5"/><rect x="16.5" y="4" width="4" height="13" rx="1.5"/></svg><span>Case board</span><span class="nav__count nav__count--red" id="nav-breach-count" title="SLA breached"></span></a>
-      <a class="nav__item" href="#/districts" data-route="districts"><svg class="icon" viewBox="0 0 24 24"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5zM9 4v13M15 6.5v13"/></svg><span>Risk map</span></a>
-      <a class="nav__item" href="#/watchlist" data-route="watchlist"><svg class="icon" viewBox="0 0 24 24"><path d="m12 4 2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 16.4l-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z"/></svg><span>Watchlist</span></a>
+      <a class="nav__item" href="#/dashboard" data-route="dashboard"><svg class="icon" viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Overview</span></a>
+      <a class="nav__item" href="#/alerts" data-route="alerts"><svg class="icon" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg><span>Alert queue</span><span class="nav__count" id="nav-alert-count"></span></a>
+      <a class="nav__item" href="#/board" data-route="board"><svg class="icon" viewBox="0 0 24 24"><path d="M6 5v11"/><path d="M12 5v6"/><path d="M18 5v14"/></svg><span>Case board</span><span class="nav__count nav__count--red" id="nav-breach-count" title="SLA breached"></span></a>
+      <a class="nav__item" href="#/districts" data-route="districts"><svg class="icon" viewBox="0 0 24 24"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg><span>Risk map</span></a>
+      <a class="nav__item" href="#/watchlist" data-route="watchlist"><svg class="icon" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><span>Watchlist</span></a>
 
       <div class="nav__group">Insights</div>
-      <a class="nav__item" href="#/scorecards" data-route="scorecards"><svg class="icon" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></svg><span>Scorecards</span></a>
-      <a class="nav__item" href="#/analytics" data-route="analytics"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16V9M12 16v-4M16 16V7"/></svg><span>Analytics</span></a>
-      <a class="nav__item" href="#/quality" data-route="quality"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.4 8-8 9-4.6-1-8-4-8-9V6zM9 12l2 2 4-4"/></svg><span>Data quality</span></a>
+      <a class="nav__item" href="#/scorecards" data-route="scorecards"><svg class="icon" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg><span>Scorecards</span></a>
+      <a class="nav__item" href="#/analytics" data-route="analytics"><svg class="icon" viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg><span>Analytics</span></a>
+      <a class="nav__item" href="#/quality" data-route="quality"><svg class="icon" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span>Data quality</span></a>
 
       <div class="nav__group">Govern</div>
-      <a class="nav__item" href="#/policy" data-route="policy"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span>Policy studio</span></a>
-      <a class="nav__item" href="#/audit" data-route="audit"><svg class="icon" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 13h7M9 17h7"/></svg><span>Audit trail</span></a>
-      <a class="nav__item" href="#/about" data-route="about"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6v.5"/></svg><span>How it works</span></a>
+      <a class="nav__item" href="#/policy" data-route="policy"><svg class="icon" viewBox="0 0 24 24"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></svg><span>Policy studio</span></a>
+      <a class="nav__item" href="#/audit" data-route="audit"><svg class="icon" viewBox="0 0 24 24"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg><span>Audit trail</span></a>
+      <a class="nav__item" href="#/about" data-route="about"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>How it works</span></a>
     </nav>
 
     <div class="sidebar__foot">
@@ -210,26 +217,26 @@
 
   <div class="main">
     <header class="topbar">
-      <button class="icon-btn icon-btn--ghost topbar__menu" data-open-sidebar aria-label="Open navigation"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <button class="icon-btn icon-btn--ghost topbar__menu" data-open-sidebar aria-label="Open navigation"><svg class="icon" viewBox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
       <div class="topbar__title">
         <h1 id="page-title">Overview</h1>
         <p id="page-subtitle">Portfolio-wide risk picture</p>
       </div>
       <div class="topbar__actions">
-        <button class="search-trigger" data-open-palette><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4-4"/></svg><span>Search cases…</span><kbd>/</kbd></button>
+        <button class="search-trigger" data-open-palette><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span>Search cases…</span><kbd>/</kbd></button>
         <button class="btn btn--ghost btn--sm" id="rerun-detection" title="Re-run the detection engine">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4h-4"/></svg><span class="hide-sm">Run detection</span>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg><span class="hide-sm">Run detection</span>
         </button>
         <div class="pop-anchor">
           <button class="icon-btn icon-btn--ghost" id="notif-btn" aria-label="Notifications" title="Notifications">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6v3.5L4.5 16h15L18 12.5V9a6 6 0 0 0-6-6zM9.5 19a2.5 2.5 0 0 0 5 0"/></svg>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
             <span class="dot-badge" id="notif-count" hidden></span>
           </button>
           <div class="popover popover--notif" id="notif-pop" hidden></div>
         </div>
         <button class="icon-btn icon-btn--ghost" data-theme-toggle title="Toggle theme" aria-label="Toggle dark or light theme">
-          <svg class="icon icon--sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
-          <svg class="icon icon--moon" viewBox="0 0 24 24"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+          <svg class="icon icon--sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
         </button>
         <div class="pop-anchor">
           <button class="user" id="user-btn" aria-label="Account">
@@ -260,7 +267,7 @@
   <div class="modal" id="palette" hidden>
     <div class="modal__scrim" data-close-modal></div>
     <div class="palette" role="dialog" aria-label="Command palette">
-      <div class="palette__input"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4-4"/></svg>
+      <div class="palette__input"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         <input id="palette-input" placeholder="Search works, MPs, agencies, or type a command…" autocomplete="off" /></div>
       <div class="palette__list" id="palette-list"></div>
       <div class="palette__foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span></div>
@@ -279,7 +286,9 @@
   <div class="toasts" id="toasts"></div>
 </div>
 
+<script src="icons.js"></script>
 <script src="charts.js"></script>
 <script src="app.js"></script>
+<script src="fx.js"></script>
 </body>
 </html>
